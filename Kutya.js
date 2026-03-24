@@ -13,9 +13,9 @@ export default class Kutya{
         this.szuloElem = szuloElem;
         this.megjelenit();
 
-        const buttonElem=document.querySelector(".kartya:last-child button");
-        console.log(buttonElem)
-        buttonElem.addEventListener("click", function(event){
+        this.buttonElem=document.querySelector(".kartya:last-child button");
+        console.log(this.buttonElem)
+        this.buttonElem.addEventListener("click", function(event){
             console.log(event.target);
         })
     }
@@ -28,7 +28,7 @@ export default class Kutya{
                 <button>Kedvenc ${this.#obj.nev}</button>
             </div>
             `;
-    this.szuloElem.innerHTML += kod;
+    this.szuloElem.insertAdjacentHTML("beforeend", kod)
     }
 
     getObj(){
