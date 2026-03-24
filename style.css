@@ -1,0 +1,8 @@
+img{
+    width: 100%;
+}
+.kartya{
+    width: 300px;
+    border: 1px solid grey;
+    text-align: center;
+}
