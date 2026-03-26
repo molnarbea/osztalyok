@@ -3,7 +3,8 @@ export default class Kutya{
     egységbe zárjuk az adatokat és a hozzájuk tartozó adattagokat és tagfüggvényeket */
     /*adattag lehet privát vagy publikus */
     #obj = {}//privát adattag
-    constructor(obj={kep,nev},szuloElem){
+    #index=0;
+    constructor(obj={kep,nev},index,szuloElem){
         /*this.kep = obj.kep;
         this.nev = obj.nev;*/
 
@@ -11,14 +12,30 @@ export default class Kutya{
 
         this.#obj = obj;
         this.szuloElem = szuloElem;
+        console.log(this.szuloElem)
+        this.#index = index;
         this.megjelenit();
 
-        this.buttonElem=document.querySelector(".kartya:last-child button");
-        console.log(this.buttonElem)
-        this.buttonElem.addEventListener("click", function(event){
-            console.log(event.target);
-        })
+        this.esemenykezelo();
     }
+
+    sajatEsemeny(){
+        //létrehozok saját eseményt
+        const e = new CustomEvent("kedvenc",{detail:this.#index});
+        window.dispatchEvent(e);
+    }
+
+    esemenykezelo(){
+        const buttonElem=document.querySelector(".kartya:last-child button");
+        console.log(buttonElem);
+        buttonElem.addEventListener("click", (event)=>{
+            console.log("event.target",event.target);
+            console.log("this",this);
+            this.sajatEsemeny()
+        });
+    }
+    //this a konkrét osztály pédányra mutat, de egy esemény kezelőben a function névtelen függvényt használunk, akkor a this az a html dom elem, amely az eseményt kiváltotta (=>)nyíl függvény esetén viszont a konkrét osztály pédány
+    
 
     megjelenit() {
     //az osztály tagfüggvénye, az osztály adattagjain dolgozik
@@ -28,7 +45,7 @@ export default class Kutya{
                 <button>Kedvenc ${this.#obj.nev}</button>
             </div>
             `;
-    this.szuloElem.insertAdjacentHTML("beforeend", kod)
+    this.szuloElem.insertAdjacentHTML("beforeend", kod);
     }
 
     getObj(){
@@ -42,7 +59,7 @@ export default class Kutya{
         }else if(ertek == "nem oltott"){
             this.#obj.oltott = false;
         }else{
-            console.log("Nem megfelelő az érték!")
+            console.log("Nem megfelelő az érték!");
         }
     }
 }

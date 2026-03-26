@@ -1,0 +1,22 @@
+export const KUTYALISTA = [
+    {
+        kep:"kepek/kutyi.jpg",
+        nev:"Corgi"
+    },
+    {
+        kep:"kepek/bodri.jpg",
+        nev:"Bodri"
+    },
+    {
+        kep:"kepek/bodri.jpg",
+        nev:"Szuzi"
+    },
+    {
+        kep:"kepek/bodri.jpg",
+        nev:"Luna"
+    },
+    {
+        kep:"kepek/bodri.jpg",
+        nev:"Max"
+    },
+];
